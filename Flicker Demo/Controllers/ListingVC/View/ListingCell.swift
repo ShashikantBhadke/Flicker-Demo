@@ -12,9 +12,10 @@ import Kingfisher
 final class ListingCell: UICollectionViewCell {
     
     // MARK:- Outlets
-    @IBOutlet private weak var viewBG   : UIView!
-    @IBOutlet private weak var imgvPost : UIImageView!
-    @IBOutlet private weak var lblTitle : UILabel!
+    @IBOutlet private weak var viewBG       : UIView!
+    @IBOutlet private weak var imgvPost     : UIImageView!
+    @IBOutlet private weak var imgvNewPost  : UIImageView!
+    @IBOutlet private weak var lblTitle     : UILabel!
     
     // MARK:- Variables
     var photoData: FlickrPhoto? {
@@ -38,6 +39,7 @@ final class ListingCell: UICollectionViewCell {
     private func setUpData() {
         guard let obj = photoData else { return }
         lblTitle.text = (obj.title ?? "").capitalized
+        imgvNewPost.isHidden = !obj.isNew
         imgvPost.setImage(obj.urlM)
     }
     
@@ -54,6 +56,6 @@ extension UIImageView {
         guard let strURL = _strURL, !strURL.isEmpty, let url = URL(string: strURL) else { return }
         let resizeProcess = ResizingImageProcessor(referenceSize: _size ?? self.frame.size)
         self.kf.indicatorType = .activity
-        self.kf.setImage(with: url, placeholder: nil, options: [.fromMemoryCacheOrRefresh, .processor(resizeProcess)], progressBlock: nil)
+        self.kf.setImage(with: url, placeholder: nil, options: [isOffline ? .onlyFromCache : .fromMemoryCacheOrRefresh, .processor(resizeProcess)], progressBlock: nil)
     }
 } //extension

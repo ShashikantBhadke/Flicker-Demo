@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZhT-QZ-DMg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -72,29 +72,33 @@
                                             <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WkJ-Vd-Lb7">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WkJ-Vd-Lb7">
                                                     <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DGZ-yf-nNu">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DGZ-yf-nNu">
                                                             <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
                                                         </imageView>
-                                                        <view alpha="0.29999999999999999" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VtC-zI-OgA">
+                                                        <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VtC-zI-OgA">
                                                             <rect key="frame" x="0.0" y="340" width="400" height="60"/>
                                                             <color key="backgroundColor" name="clr_ViewBG"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="60" id="vB0-Sg-n1O"/>
                                                             </constraints>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLj-FK-ByL">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLj-FK-ByL">
                                                             <rect key="frame" x="8" y="365.5" width="39.5" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flicker_Demo_newIcon" translatesAutoresizingMaskIntoConstraints="NO" id="jrD-XI-FOg">
+                                                            <rect key="frame" x="316" y="20" width="64" height="64"/>
+                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" name="clr_ViewBG"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="DGZ-yf-nNu" secondAttribute="bottom" id="9mH-Bp-L9A"/>
+                                                        <constraint firstItem="jrD-XI-FOg" firstAttribute="top" secondItem="WkJ-Vd-Lb7" secondAttribute="top" constant="20" id="C5o-5d-IMN"/>
                                                         <constraint firstAttribute="bottom" secondItem="VtC-zI-OgA" secondAttribute="bottom" id="IhK-C6-t3t"/>
                                                         <constraint firstItem="DGZ-yf-nNu" firstAttribute="top" secondItem="WkJ-Vd-Lb7" secondAttribute="top" id="LOV-8T-K3O"/>
                                                         <constraint firstItem="JLj-FK-ByL" firstAttribute="leading" secondItem="WkJ-Vd-Lb7" secondAttribute="leading" constant="8" id="SsY-0g-Xu6"/>
@@ -102,6 +106,7 @@
                                                         <constraint firstItem="DGZ-yf-nNu" firstAttribute="leading" secondItem="WkJ-Vd-Lb7" secondAttribute="leading" id="bUd-Ua-bjy"/>
                                                         <constraint firstAttribute="trailing" secondItem="VtC-zI-OgA" secondAttribute="trailing" id="dhF-ld-oZq"/>
                                                         <constraint firstAttribute="bottom" secondItem="JLj-FK-ByL" secondAttribute="bottom" constant="15" id="fa0-DI-eUi"/>
+                                                        <constraint firstAttribute="trailing" secondItem="jrD-XI-FOg" secondAttribute="trailing" constant="20" id="fx6-oN-Wqa"/>
                                                         <constraint firstAttribute="trailing" secondItem="DGZ-yf-nNu" secondAttribute="trailing" id="x00-lt-UtK"/>
                                                     </constraints>
                                                 </view>
@@ -116,6 +121,7 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="400" height="400"/>
                                         <connections>
+                                            <outlet property="imgvNewPost" destination="jrD-XI-FOg" id="hEs-dT-SdC"/>
                                             <outlet property="imgvPost" destination="DGZ-yf-nNu" id="8P2-ux-nwE"/>
                                             <outlet property="lblTitle" destination="JLj-FK-ByL" id="8LM-2V-Bv4"/>
                                             <outlet property="viewBG" destination="WkJ-Vd-Lb7" id="Gv0-7B-TcE"/>
@@ -167,6 +173,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="flicker_Demo_newIcon" width="32" height="32"/>
         <namedColor name="clr_ViewBG">
             <color red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

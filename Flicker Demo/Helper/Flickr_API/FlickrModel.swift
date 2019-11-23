@@ -29,7 +29,8 @@ struct FlickrPhoto: Codable {
     let ispublic, isfriend, isfamily: Int?
     let urlM: String?
     let heightM, widthM: Int?
-
+    var isNew = false
+    
     enum CodingKeys: String, CodingKey {
         case id, owner, secret, server, farm, title, ispublic, isfriend, isfamily
         case urlM = "url_m"
@@ -37,3 +38,10 @@ struct FlickrPhoto: Codable {
         case widthM = "width_m"
     }
 }
+
+// MARK :- Extensio For -
+extension FlickrPhoto: Equatable {
+    static func ==(lhs: FlickrPhoto, rhs: FlickrPhoto) -> Bool {
+        return lhs.id == rhs.id
+    }
+} //extension

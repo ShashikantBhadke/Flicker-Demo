@@ -29,6 +29,8 @@ struct Constants {
         static let DisableJSONCallback = "nojsoncallback"
         static let SafeSearch = "safe_search"
         static let Text = "text"
+        static let Per_Page = "per_page"
+        static let Page = "page"
     }
     
     struct FlickrAPIValues {
@@ -38,9 +40,10 @@ struct Constants {
         static let DisableJSONCallback = "1"
         static let MediumURL = "url_m"
         static let SafeSearch = "1"
+        static let Per_Page = "30"
     }
     
-    static private func flickrURLFromParameters(searchString: String) -> URL? {
+    static private func flickrURLFromParameters(searchString: String, intPage: Int = 1) -> URL? {
         
         // Build base URL
         var components = URLComponents()
@@ -58,14 +61,16 @@ struct Constants {
         components.queryItems?.append(URLQueryItem(name: Constants.FlickrAPIKeys.Extras, value: Constants.FlickrAPIValues.MediumURL));
         components.queryItems?.append(URLQueryItem(name: Constants.FlickrAPIKeys.SafeSearch, value: Constants.FlickrAPIValues.SafeSearch));
         components.queryItems?.append(URLQueryItem(name: Constants.FlickrAPIKeys.DisableJSONCallback, value: Constants.FlickrAPIValues.DisableJSONCallback));
+        components.queryItems?.append(URLQueryItem(name: Constants.FlickrAPIKeys.Per_Page, value: Constants.FlickrAPIValues.Per_Page));
+        components.queryItems?.append(URLQueryItem(name: Constants.FlickrAPIKeys.Page, value: "\(intPage)"));
         components.queryItems?.append(URLQueryItem(name: Constants.FlickrAPIKeys.Text, value: searchString));
         
         return components.url
     }
     
-    static func getListingfor(_ strKey: String, _ complection: @escaping((Result<FlickrModel>)->Void)) {
+    static func getListingfor(_ strKey: String, intPage: Int = 1, _ complection: @escaping((Result<FlickrModel>)->Void)) {
         
-        guard let url = Constants.flickrURLFromParameters(searchString: strKey) else { return }
+        guard let url = Constants.flickrURLFromParameters(searchString: strKey, intPage: intPage) else { return }
         URLSession.shared.dataTask(with: url) { (data, _, Err) in
             guard let data = data else {
                 let strErr = Err?.localizedDescription ?? "Data is nil"

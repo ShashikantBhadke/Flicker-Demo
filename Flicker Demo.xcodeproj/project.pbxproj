@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		557D296A238906B6000298BC /* Flicker_DB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 557D2968238906B6000298BC /* Flicker_DB.xcdatamodeld */; };
 		5592B357237FCE0D00106844 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5592B356237FCE0D00106844 /* AppDelegate.swift */; };
 		5592B359237FCE0D00106844 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5592B358237FCE0D00106844 /* SceneDelegate.swift */; };
 		5592B35B237FCE0D00106844 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5592B35A237FCE0D00106844 /* SplashVC.swift */; };
@@ -17,10 +18,13 @@
 		5592B376237FD27500106844 /* ListingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5592B375237FD27500106844 /* ListingCell.swift */; };
 		5592B37A237FD55900106844 /* Flickr_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5592B379237FD55900106844 /* Flickr_API.swift */; };
 		5592B37C237FD9AB00106844 /* FlickrModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5592B37B237FD9AB00106844 /* FlickrModel.swift */; };
+		55A0D935238938B800C9DC5B /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A0D934238938B800C9DC5B /* CoreDataHelper.swift */; };
+		55A0D937238938D300C9DC5B /* CoreDataEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A0D936238938D300C9DC5B /* CoreDataEnums.swift */; };
 		75F27BF3A323EADB4CEC9CFC /* Pods_Flicker_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED52F598F7CE0AFA58359D13 /* Pods_Flicker_Demo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		557D2969238906B6000298BC /* Flicker_DB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Flicker_DB.xcdatamodel; sourceTree = "<group>"; };
 		5592B353237FCE0D00106844 /* Flicker Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flicker Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5592B356237FCE0D00106844 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5592B358237FCE0D00106844 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -33,6 +37,8 @@
 		5592B375237FD27500106844 /* ListingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingCell.swift; sourceTree = "<group>"; };
 		5592B379237FD55900106844 /* Flickr_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flickr_API.swift; sourceTree = "<group>"; };
 		5592B37B237FD9AB00106844 /* FlickrModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrModel.swift; sourceTree = "<group>"; };
+		55A0D934238938B800C9DC5B /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		55A0D936238938D300C9DC5B /* CoreDataEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataEnums.swift; sourceTree = "<group>"; };
 		A347C2A6E92296DCDE203968 /* Pods-Flicker Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flicker Demo.release.xcconfig"; path = "Target Support Files/Pods-Flicker Demo/Pods-Flicker Demo.release.xcconfig"; sourceTree = "<group>"; };
 		D3BA3F5BA0A1964F6244D749 /* Pods-Flicker Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flicker Demo.debug.xcconfig"; path = "Target Support Files/Pods-Flicker Demo/Pods-Flicker Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		ED52F598F7CE0AFA58359D13 /* Pods_Flicker_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flicker_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +65,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		557D29672389068D000298BC /* CoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				557D2968238906B6000298BC /* Flicker_DB.xcdatamodeld */,
+				55A0D934238938B800C9DC5B /* CoreDataHelper.swift */,
+				55A0D936238938D300C9DC5B /* CoreDataEnums.swift */,
+			);
+			path = CoreDataModel;
+			sourceTree = "<group>";
+		};
 		5592B34A237FCE0C00106844 = {
 			isa = PBXGroup;
 			children = (
@@ -83,8 +99,9 @@
 				5592B36A237FCE8000106844 /* AppDelegate */,
 				5592B36C237FCEE900106844 /* Controllers */,
 				5592B36B237FCEE100106844 /* Assets */,
-				5592B364237FCE0E00106844 /* Info.plist */,
 				5592B377237FD53600106844 /* Helper */,
+				557D29672389068D000298BC /* CoreDataModel */,
+				5592B364237FCE0E00106844 /* Info.plist */,
 			);
 			path = "Flicker Demo";
 			sourceTree = "<group>";
@@ -289,12 +306,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55A0D935238938B800C9DC5B /* CoreDataHelper.swift in Sources */,
 				5592B37C237FD9AB00106844 /* FlickrModel.swift in Sources */,
 				5592B376237FD27500106844 /* ListingCell.swift in Sources */,
 				5592B37A237FD55900106844 /* Flickr_API.swift in Sources */,
+				55A0D937238938D300C9DC5B /* CoreDataEnums.swift in Sources */,
 				5592B35B237FCE0D00106844 /* SplashVC.swift in Sources */,
 				5592B370237FD1E100106844 /* ListingVC.swift in Sources */,
 				5592B357237FCE0D00106844 /* AppDelegate.swift in Sources */,
+				557D296A238906B6000298BC /* Flicker_DB.xcdatamodeld in Sources */,
 				5592B359237FCE0D00106844 /* SceneDelegate.swift in Sources */,
 				5592B374237FD25D00106844 /* ListingVC+CollectionView.swift in Sources */,
 			);
@@ -490,6 +510,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		557D2968238906B6000298BC /* Flicker_DB.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				557D2969238906B6000298BC /* Flicker_DB.xcdatamodel */,
+			);
+			currentVersion = 557D2969238906B6000298BC /* Flicker_DB.xcdatamodel */;
+			path = Flicker_DB.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 5592B34B237FCE0C00106844 /* Project object */;
 }

@@ -24,6 +24,7 @@ extension ListingVC: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ListingCell.self), for: indexPath) as? ListingCell else { fatalError("Unable to load collection view cell (Listingcell)") }
         if indexPath.item < arrPhoto.count {
             cell.photoData = arrPhoto[indexPath.item]
+            
         }
         return cell
     }
