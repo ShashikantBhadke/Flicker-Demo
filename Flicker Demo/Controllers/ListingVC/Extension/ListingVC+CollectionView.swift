@@ -34,6 +34,11 @@ extension ListingVC: UICollectionViewDataSource {
         cell.stopDownloadImage()
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard !isLoding, (arrPhoto.count - 1) == indexPath.item else { return }
+        callWebService()
+    }
+    
 } //extension
 
 // MARK :- Extensio For - UICollectionViewDelegateFlowLayout

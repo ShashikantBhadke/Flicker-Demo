@@ -11,19 +11,21 @@ import UIKit
 var isOffline = false
 
 final class ListingVC: UIViewController {
-
+    
     // MARK:- Outlets
-    @IBOutlet private weak var indicator        : UIActivityIndicatorView!
-    @IBOutlet private weak var lblStatus        : UILabel!
-    @IBOutlet private weak var collectionView   : UICollectionView!
+    @IBOutlet private weak var viewLoading   : LoadingView!
+    @IBOutlet internal weak var collectionView  : UICollectionView!
     
     // MARK:- Variables
-    var arrPhoto = [FlickrPhoto]()
+    var intPage         = 1
+    var isLoding        = false
+    var arrPhoto        = [FlickrPhoto]()
     
     // MARK:- View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpCollectionView()
+        setUpSearchBar()
         getDataInCoreDB()
     }
     
@@ -31,7 +33,7 @@ final class ListingVC: UIViewController {
         super.viewDidAppear(animated)
         callWebService()
     }
-
+    
     // MARK:- Setup CollectionView
     private func setUpCollectionView() {
         self.navigationItem.setHidesBackButton(true, animated: true)
@@ -41,47 +43,55 @@ final class ListingVC: UIViewController {
         collectionView.dataSource = self
     }
     
+    private func setUpSearchBar() {
+        let search = UISearchController(searchResultsController: nil)
+        search.searchBar.delegate = self
+        search.hidesNavigationBarDuringPresentation = false
+        search.obscuresBackgroundDuringPresentation = false
+        search.searchBar.placeholder = "Nature"
+        navigationItem.searchController = search
+    }
+    
     // MARK:- API Call
-    private func callWebService() {
+    func callWebService(strSearch: String = "Nature") {
         showIndicator()
-        Constants.getListingfor("Nature"){ result in
+        Constants.getListingfor(strSearch, intPage: intPage){ result in
             switch result {
             case .success(let arrData):
-                DispatchQueue.main.async {
-                    if let arr = arrData.photos?.photo, !arr.isEmpty {
-                        for var newObj in arr {
-                            if !self.arrPhoto.contains(newObj) {
-                                newObj.isNew = true
-                                self.arrPhoto.append(newObj)
-                                let indexPath = IndexPath(item: self.arrPhoto.count - 1, section: 0)
-                                self.collectionView.insertItems(at: [indexPath])
-                            }
+                if let arr = arrData.photos?.photo, !arr.isEmpty {
+                    self.intPage += 1
+                    for var newObj in arr {
+                        if !self.arrPhoto.contains(newObj) {
+                            newObj.isNew = true
+                            self.arrPhoto.append(newObj)
+                            let indexPath = IndexPath(item: self.arrPhoto.count - 1, section: 0)
+                            self.collectionView.insertItems(at: [indexPath])
                         }
+                    }
+                    if self.intPage == 2 {
                         self.saveDataInCoreDB(arr)
-                        isOffline = false
-                    } else {
-                        isOffline = true
                     }
-                    
-                    if self.arrPhoto.isEmpty {
-                        self.stopIndicator(withErr: "No data available right now.")
-                    } else {
-                        self.stopIndicator()
-                    }
+                    isOffline = false
+                } else {
+                    isOffline = true
+                }
+                
+                if self.arrPhoto.isEmpty {
+                    self.stopIndicator()
+                } else {
+                    self.stopIndicator()
                 }
             case .error(let strErr):
                 debugPrint(strErr)
-                DispatchQueue.main.async {
-                    if self.arrPhoto.isEmpty {
-                        self.stopIndicator(withErr: "No data available right now.")
-                    } else {
-                        self.stopIndicator()
-                    }
+                if self.arrPhoto.isEmpty {
+                    self.stopIndicator()
+                } else {
+                    self.stopIndicator()
                 }
             }
         }
     }
-
+    
     func saveDataInCoreDB(_ _arrData: [FlickrPhoto]) {
         guard !_arrData.isEmpty else { return }
         do {
@@ -97,6 +107,7 @@ final class ListingVC: UIViewController {
     }
     
     func getDataInCoreDB() {
+        showIndicator()
         CoreDataHelper.getLastData(.FlickrListing) { (result) in
             switch result {
             case .success(let data):
@@ -117,22 +128,26 @@ final class ListingVC: UIViewController {
             case .error(let strErr):
                 debugPrint(strErr)
             }
+            self.stopIndicator()
         }
     }
     
     // MARK:- Indicator Methods
-    private func showIndicator(_ strMessage: String = "Loading...") {
-        lblStatus.isHidden = false
-        lblStatus.text = strMessage
-        indicator.startAnimating()
+    private func showIndicator() {
+        isLoding = true
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.3) {
+                self.viewLoading.isHidden = false
+            }
+        }
     }
     
-    private func stopIndicator(withErr: String? = nil) {
-        indicator.stopAnimating()
-        lblStatus.isHidden = true
-        if let strErr = withErr {
-            lblStatus.isHidden = false
-            lblStatus.text = strErr
+    private func stopIndicator() {
+        isLoding = false
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.3) {
+                self.viewLoading.isHidden = true
+            }
         }
     }
     

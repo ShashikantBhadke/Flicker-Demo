@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		550491EB238A5014000FB707 /* ListingVC+SearchControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550491EA238A5014000FB707 /* ListingVC+SearchControllerDelegate.swift */; };
+		550491EE238A53E1000FB707 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550491ED238A53E1000FB707 /* LoadingView.swift */; };
 		557D296A238906B6000298BC /* Flicker_DB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 557D2968238906B6000298BC /* Flicker_DB.xcdatamodeld */; };
 		5592B357237FCE0D00106844 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5592B356237FCE0D00106844 /* AppDelegate.swift */; };
 		5592B359237FCE0D00106844 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5592B358237FCE0D00106844 /* SceneDelegate.swift */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		550491EA238A5014000FB707 /* ListingVC+SearchControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListingVC+SearchControllerDelegate.swift"; sourceTree = "<group>"; };
+		550491ED238A53E1000FB707 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		557D2969238906B6000298BC /* Flicker_DB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Flicker_DB.xcdatamodel; sourceTree = "<group>"; };
 		5592B353237FCE0D00106844 /* Flicker Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flicker Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5592B356237FCE0D00106844 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +67,14 @@
 				A347C2A6E92296DCDE203968 /* Pods-Flicker Demo.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		550491EC238A53D3000FB707 /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				550491ED238A53E1000FB707 /* LoadingView.swift */,
+			);
+			path = LoadingView;
 			sourceTree = "<group>";
 		};
 		557D29672389068D000298BC /* CoreDataModel */ = {
@@ -162,6 +174,7 @@
 		5592B372237FD20E00106844 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				550491EA238A5014000FB707 /* ListingVC+SearchControllerDelegate.swift */,
 				5592B373237FD25D00106844 /* ListingVC+CollectionView.swift */,
 			);
 			path = Extension;
@@ -171,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				5592B378237FD53F00106844 /* Flickr_API */,
+				550491EC238A53D3000FB707 /* LoadingView */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -316,6 +330,8 @@
 				5592B357237FCE0D00106844 /* AppDelegate.swift in Sources */,
 				557D296A238906B6000298BC /* Flicker_DB.xcdatamodeld in Sources */,
 				5592B359237FCE0D00106844 /* SceneDelegate.swift in Sources */,
+				550491EB238A5014000FB707 /* ListingVC+SearchControllerDelegate.swift in Sources */,
+				550491EE238A53E1000FB707 /* LoadingView.swift in Sources */,
 				5592B374237FD25D00106844 /* ListingVC+CollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -29,6 +29,7 @@ final class ListingCell: UICollectionViewCell {
         viewBG.layer.cornerRadius = 5
         viewBG.layer.masksToBounds = true
         imgvPost.clipsToBounds =  true
+        imgvPost.contentMode = .scaleAspectFill
     }
     
     override func prepareForReuse() {

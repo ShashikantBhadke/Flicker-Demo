@@ -80,9 +80,13 @@ struct Constants {
             
             do {
                 let arrData = try JSONDecoder().decode(FlickrModel.self, from: data)
-                complection(.success(arrData))
-            } catch let err{
-                complection(.error(err.localizedDescription))
+                DispatchQueue.main.async {
+                    complection(.success(arrData))
+                }
+            } catch let err {
+                DispatchQueue.main.async {
+                    complection(.error(err.localizedDescription))
+                }
             }
         }.resume()
         
