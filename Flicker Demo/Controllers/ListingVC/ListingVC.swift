@@ -12,9 +12,10 @@ var isOffline = false
 
 final class ListingVC: UIViewController {
     
-    // MARK:- Outlets
-    @IBOutlet private weak var viewLoading   : LoadingView!
-    @IBOutlet internal weak var collectionView  : UICollectionView!
+    // MARK:- Outlets    
+    @IBOutlet private weak var viewLoading          : LoadingView!
+    @IBOutlet internal weak var collectionView      : UICollectionView!
+    @IBOutlet private weak var alViewLoadingHeight  : NSLayoutConstraint!
     
     // MARK:- Variables
     var intPage         = 1
@@ -24,14 +25,15 @@ final class ListingVC: UIViewController {
     // MARK:- View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpCollectionView()
         setUpSearchBar()
         getDataInCoreDB()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         callWebService()
+        setUpCollectionView()
     }
     
     // MARK:- Setup CollectionView
@@ -83,11 +85,7 @@ final class ListingVC: UIViewController {
                 }
             case .error(let strErr):
                 debugPrint(strErr)
-                if self.arrPhoto.isEmpty {
-                    self.stopIndicator()
-                } else {
-                    self.stopIndicator()
-                }
+                //self.stopIndicator()
             }
         }
     }
@@ -136,8 +134,8 @@ final class ListingVC: UIViewController {
     private func showIndicator() {
         isLoding = true
         DispatchQueue.main.async {
-            UIView.animate(withDuration: 0.3) {
-                self.viewLoading.isHidden = false
+            UIView.animate(withDuration: 0.5) {
+                self.alViewLoadingHeight.constant = 3
             }
         }
     }
@@ -145,8 +143,8 @@ final class ListingVC: UIViewController {
     private func stopIndicator() {
         isLoding = false
         DispatchQueue.main.async {
-            UIView.animate(withDuration: 0.3) {
-                self.viewLoading.isHidden = true
+            UIView.animate(withDuration: 0.5) {
+                self.alViewLoadingHeight.constant = 0
             }
         }
     }

@@ -69,6 +69,13 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		2BB02F8D238BA72E00700BB2 /* CustomLayout */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomLayout;
+			sourceTree = "<group>";
+		};
 		550491EC238A53D3000FB707 /* LoadingView */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +190,7 @@
 		5592B377237FD53600106844 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				2BB02F8D238BA72E00700BB2 /* CustomLayout */,
 				5592B378237FD53F00106844 /* Flickr_API */,
 				550491EC238A53D3000FB707 /* LoadingView */,
 			);
@@ -470,14 +478,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RUTCP6369G;
+				DEVELOPMENT_TEAM = D946FFLAN9;
 				INFOPLIST_FILE = "Flicker Demo/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.SB.Flicker-Demo";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.redbytes.Flicker-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -490,14 +498,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RUTCP6369G;
+				DEVELOPMENT_TEAM = D946FFLAN9;
 				INFOPLIST_FILE = "Flicker Demo/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.SB.Flicker-Demo";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.redbytes.Flicker-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

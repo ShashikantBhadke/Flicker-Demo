@@ -13,6 +13,8 @@ import Kingfisher
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var window: UIWindow?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         KingfisherManager.shared.cache.diskStorage.config.sizeLimit = 1024 * 1024 * 100
         return true
