@@ -8,9 +8,7 @@
 
 import UIKit
 
-var isOffline = false
-
-final class ListingVC: UIViewController {
+final class ListingVC: BaseVC {
     
     // MARK:- Outlets    
     @IBOutlet private weak var viewLoading          : LoadingView!
@@ -40,6 +38,10 @@ final class ListingVC: UIViewController {
     private func setUpCollectionView() {
         self.navigationItem.setHidesBackButton(true, animated: true)
         self.navigationController?.isNavigationBarHidden = false
+        
+        if let layout = collectionView?.collectionViewLayout as? PinterestLayout {
+          layout.delegate = self
+        }
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -73,11 +75,7 @@ final class ListingVC: UIViewController {
                     if self.intPage == 2 {
                         self.saveDataInCoreDB(arr)
                     }
-                    isOffline = false
-                } else {
-                    isOffline = true
-                }
-                
+                } 
                 if self.arrPhoto.isEmpty {
                     self.stopIndicator()
                 } else {
@@ -149,4 +147,19 @@ final class ListingVC: UIViewController {
         }
     }
     
+    // MARK:- Network Change Called
+    override func networkChanged(_ status: Bool = NetworkHelper.sharedInstance.isNetworkAvailable) {
+        guard status else { return }
+        intPage = 0
+        callWebService()
+    }
+    
 } //class
+
+extension ListingVC: PinterestLayoutDelegate {
+  func collectionView(
+    _ collectionView: UICollectionView,
+    heightForPhotoAtIndexPath indexPath:IndexPath) -> CGFloat {
+    return CGFloat(arrPhoto[indexPath.item].heightM ?? 90)
+  }
+}

@@ -57,6 +57,6 @@ extension UIImageView {
         guard let strURL = _strURL, !strURL.isEmpty, let url = URL(string: strURL) else { return }
         let resizeProcess = ResizingImageProcessor(referenceSize: _size ?? self.frame.size)
         self.kf.indicatorType = .activity
-        self.kf.setImage(with: url, placeholder: nil, options: [isOffline ? .onlyFromCache : .fromMemoryCacheOrRefresh, .processor(resizeProcess)], progressBlock: nil)
+        self.kf.setImage(with: url, placeholder: nil, options: [!NetworkHelper.sharedInstance.isNetworkAvailable ? .onlyFromCache : .fromMemoryCacheOrRefresh, .processor(resizeProcess)], progressBlock: nil)
     }
 } //extension

@@ -4,9 +4,9 @@
 target 'Flicker Demo' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
+  
+  # For image cache & download
+  # Link:- https://github.com/onevcat/Kingfisher
 	pod 'Kingfisher'
-
-  # Pods for Flicker Demo
 
 end

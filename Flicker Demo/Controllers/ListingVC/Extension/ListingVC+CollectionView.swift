@@ -35,7 +35,7 @@ extension ListingVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        guard !isLoding, (arrPhoto.count - 1) == indexPath.item else { return }
+        guard !isLoding, (arrPhoto.count - 3) <= indexPath.item else { return }
         callWebService()
     }
     
