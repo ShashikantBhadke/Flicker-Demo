@@ -32,16 +32,13 @@ final class ListingVC: BaseVC {
         super.viewDidAppear(animated)
         callWebService()
         setUpCollectionView()
+        self.showMessage("Hello there...")
     }
     
     // MARK:- Setup CollectionView
     private func setUpCollectionView() {
         self.navigationItem.setHidesBackButton(true, animated: true)
         self.navigationController?.isNavigationBarHidden = false
-        
-        if let layout = collectionView?.collectionViewLayout as? PinterestLayout {
-          layout.delegate = self
-        }
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -64,15 +61,13 @@ final class ListingVC: BaseVC {
             case .success(let arrData):
                 if let arr = arrData.photos?.photo, !arr.isEmpty {
                     self.intPage += 1
-                    for var newObj in arr {
+                    for newObj in arr {
                         if !self.arrPhoto.contains(newObj) {
-                            newObj.isNew = true
                             self.arrPhoto.append(newObj)
-                            let indexPath = IndexPath(item: self.arrPhoto.count - 1, section: 0)
-                            self.collectionView.insertItems(at: [indexPath])
                         }
                     }
-                    if self.intPage == 2 {
+                    self.collectionView.reloadData()
+                    if self.intPage == 2 || arr.count < 20 {
                         self.saveDataInCoreDB(arr)
                     }
                 } 
@@ -82,8 +77,8 @@ final class ListingVC: BaseVC {
                     self.stopIndicator()
                 }
             case .error(let strErr):
-                debugPrint(strErr)
-                //self.stopIndicator()
+                self.stopIndicator()
+                self.showMessage(strErr)
             }
         }
     }
@@ -95,10 +90,10 @@ final class ListingVC: BaseVC {
             if !arrData.isEmpty {
                 CoreDataHelper.saveData(arrData, table: .FlickrListing)
             } else {
-                debugPrint("No data to save in side coreDB")
+                self.showMessage("No data to save in side coreDB")
             }
         } catch let errDocadable {
-            debugPrint(errDocadable.localizedDescription)
+            self.showMessage(errDocadable.localizedDescription)
         }
     }
     
@@ -115,14 +110,14 @@ final class ListingVC: BaseVC {
                         self.stopIndicator()
                         self.collectionView.reloadData()
                     } else {
-                        debugPrint("No data from coreDB to show listing")
+                        self.showMessage("No data from coreDB to show listing")
                     }
                 } catch let errDocadable {
-                    debugPrint(errDocadable.localizedDescription)
+                    self.showMessage(errDocadable.localizedDescription)
                 }
                 
             case .error(let strErr):
-                debugPrint(strErr)
+                self.showMessage(strErr)
             }
             self.stopIndicator()
         }
@@ -149,17 +144,16 @@ final class ListingVC: BaseVC {
     
     // MARK:- Network Change Called
     override func networkChanged(_ status: Bool = NetworkHelper.sharedInstance.isNetworkAvailable) {
+        showMessage(status ? "You are online now.." : "Please check your network connection...")
         guard status else { return }
         intPage = 0
         callWebService()
+        
+    }
+    
+    // MARK:- Show Toast
+    func showMessage(_ strMessage: String) {
+        self.view.makeToast(strMessage, duration: 3.0, position: .bottom)
     }
     
 } //class
-
-extension ListingVC: PinterestLayoutDelegate {
-  func collectionView(
-    _ collectionView: UICollectionView,
-    heightForPhotoAtIndexPath indexPath:IndexPath) -> CGFloat {
-    return CGFloat(arrPhoto[indexPath.item].heightM ?? 90)
-  }
-}

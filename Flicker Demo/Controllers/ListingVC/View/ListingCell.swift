@@ -12,12 +12,11 @@ import Kingfisher
 final class ListingCell: UICollectionViewCell {
     
     // MARK:- Outlets
-    @IBOutlet private weak var viewBG       : UIView!
     @IBOutlet private weak var imgvPost     : UIImageView!
-    @IBOutlet private weak var imgvNewPost  : UIImageView!
     @IBOutlet private weak var lblTitle     : UILabel!
     
     // MARK:- Variables
+    var strIndex = "-"
     var photoData: FlickrPhoto? {
         didSet{
             setUpData()
@@ -26,8 +25,10 @@ final class ListingCell: UICollectionViewCell {
     
     // MARK:- Default Methods
     override func awakeFromNib() {
-        viewBG.layer.cornerRadius = 5
-        viewBG.layer.masksToBounds = true
+        contentView.layer.cornerRadius = 5
+        contentView.layer.masksToBounds = true
+        imgvPost.layer.cornerRadius = 5
+        imgvPost.layer.masksToBounds = true
         imgvPost.clipsToBounds =  true
         imgvPost.contentMode = .scaleAspectFill
     }
@@ -39,8 +40,7 @@ final class ListingCell: UICollectionViewCell {
     
     private func setUpData() {
         guard let obj = photoData else { return }
-        lblTitle.text = (obj.title ?? "").capitalized
-        imgvNewPost.isHidden = !obj.isNew
+        lblTitle.text = "\(strIndex) " + (obj.title ?? "").capitalized
         imgvPost.setImage(obj.urlM)
     }
     

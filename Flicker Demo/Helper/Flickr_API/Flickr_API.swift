@@ -74,7 +74,9 @@ struct Constants {
         URLSession.shared.dataTask(with: url) { (data, _, Err) in
             guard let data = data else {
                 let strErr = Err?.localizedDescription ?? "Data is nil"
-                complection(.error(strErr))
+                DispatchQueue.main.async {
+                    complection(.error(strErr))
+                }
                 return
             }
             

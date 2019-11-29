@@ -29,7 +29,6 @@ struct FlickrPhoto: Codable {
     let ispublic, isfriend, isfamily: Int?
     let urlM: String?
     let heightM, widthM: Int?
-    var isNew = false
     
     enum CodingKeys: String, CodingKey {
         case id, owner, secret, server, farm, title, ispublic, isfriend, isfamily
